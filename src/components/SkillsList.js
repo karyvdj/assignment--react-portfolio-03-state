@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Skill from './Skill';
-// import Skill component
 
 class SkillsList extends Component {
   render() {

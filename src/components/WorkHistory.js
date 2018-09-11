@@ -3,8 +3,6 @@ import Job from './Job';
 
 class WorkHistory extends Component {
   render() {
-    console.log(this.props.jobsList);
-    /* receive `jobsList` array as props from App compnonent */
     const { jobsList } = this.props
     return (
       <section>

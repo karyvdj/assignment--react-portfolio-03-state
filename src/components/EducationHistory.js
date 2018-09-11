@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import EduTitle from './EduTitle';
 
-// import EduTitle component
-
 class EducationHistory extends Component {
 
   renderList(eduList) {

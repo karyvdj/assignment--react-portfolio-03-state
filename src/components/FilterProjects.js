@@ -3,10 +3,6 @@ import { projectData } from '../data/datasource'
 import Project from './Project';
 
 /*  Advice:
-   (1) Create the component's JSX by using .map() on `projectData`
-       you will want to map to an array of <Project/> components
-
-
    (2) add an onClick event listener to the  <span> elements in .project-types-list
         that calls a method to change the FilterProjects component state to the selected
         view,
@@ -23,7 +19,9 @@ import Project from './Project';
  */
 
 class FilterProjects extends Component {
-
+state={
+  
+}
 
   render() {
     const projectSelectedClassVal = 'project-type--selected'
@@ -34,10 +32,6 @@ class FilterProjects extends Component {
 
     // change value of 'let' variables based on component state for whether
     //'all', 'team', or 'solo' is selected
-
-
-
-
     // --
 
     return (
@@ -66,7 +60,6 @@ class FilterProjects extends Component {
 
           </div>
         </section>
-
     );
   }
 }
