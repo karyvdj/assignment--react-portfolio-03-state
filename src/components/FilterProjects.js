@@ -2,59 +2,51 @@ import React, { Component } from 'react';
 import { projectData } from '../data/datasource'
 import Project from './Project';
 
-/*  Advice:
-   (2) add an onClick event listener to the  <span> elements in .project-types-list
-        that calls a method to change the FilterProjects component state to the selected
-        view,
-
-        Note: you will want to set the component's initial state in the
-              constructor() function
-
-   (3) Use .filter() to render the `projectData` based on FilterProjects
-       component state
-
-       Hint: you may want to use .filter() depending on the  then .map()
-
-
- */
-
 class FilterProjects extends Component {
-state={
+  constructor() {
+    super();
+    this.state = {
+      filterType: 'all'
+    }
+  }
+  handleFilterClick(filter) {
+    console.log("click")
+    this.setState({
+      filterType: filter
+    });
+  }
   
-}
-
+  
   render() {
-    const projectSelectedClassVal = 'project-type--selected'
+    const { allClassName, teamClassName, soloClassName, filterType} = this.state
 
-    let allSelectedRenderedClass = projectSelectedClassVal
-    let soloSelectedRenderedClass = ''
-    let teamSelectedRenderedClass = ''
-
-    // change value of 'let' variables based on component state for whether
-    //'all', 'team', or 'solo' is selected
-    // --
-
+    let filterListProjects = projectData.filter(project => {
+      if (filterType === "all") return true;
+      if (project.solo === true && filterType === 'true') return true;
+      if (project.solo === false && filterType === 'false') return true;
+    });
+    
     return (
       <section>
           <h4>Projects</h4>
 
           <div className="project-types-list">
-            <span data-ptype="all" className={`project-type project-type--all ${allSelectedRenderedClass}`}>
+            <span data-ptype="all" className="project-type project-type--all project-type--selected" onClick={() => this.handleFilterClick('all')}>
               All
             </span>
 
-            <span data-ptype="solo" className={`project-type project-type--solo ${soloSelectedRenderedClass}}`}>
+            <span data-ptype="solo" className="project-type project-type--solo" onClick={() => this.handleFilterClick('true')}>
               <i className="ion-person"></i>Solo
             </span>
 
-            <span data-ptype="team" className={`project-type project-type--team ${teamSelectedRenderedClass}`}>
+            <span data-ptype="team" className="project-type project-type--team" onClick={() => this.handleFilterClick('false')}>
               <i className="ion-person-stalker"></i>Team
             </span>
           </div>
 
           <div className='projects-list'>
-
-            {projectData.map (project => (
+            
+            {filterListProjects.map (project => (
               <Project key={project.projectName} project={project}/>
             ))}
 
